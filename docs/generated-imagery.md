@@ -1,0 +1,9 @@
+# Generated network imagery
+
+Built-in image-generation tool, September 12, 2026. The output is illustrative; no actual STARTS participants or partnerships are represented.
+
+Project asset: `apps/web/public/images/global-network-editorial.png`.
+
+## Prompt
+
+Use case: photorealistic-natural. Asset type: a single panoramic editorial contact sheet for STARTS Forward, a student-centered global health collaboration platform. Create one very wide image, aspect ratio 3:1, with exactly FIVE equal-width vertical photographic panels adjacent edge-to-edge, without borders and with no text or logos. Each panel is a separate polished documentary-style photo in a cohesive warm natural-light palette with deep greens and soft gold. Panel 1 leftmost: elevated Miami skyline across Biscayne Bay with international port connectivity, recognizably South Florida architecture and blue water. Panel 2: Caribbean coastal university/community environment, lush hills, colorful architecture and sea, dignified and modern. Panel 3: Latin American urban university landscape with green Andean mountains and warm brick architecture inspired by Colombia. Panel 4: diverse adult university students and early-career professionals actively collaborating around a laptop and paper research notes in a bright university studio, candid natural expressions, realistic hands. Panel 5 rightmost: adult international global health research team working collaboratively in a light-filled community meeting room, discussing a wall map and non-legible research charts, balanced representation and no clinical procedures. High-quality credible institutional editorial photography, realistic optics and subtle film grain, no watermarks, no readable letters, no artificial HUD graphics. This is illustrative conceptual imagery not actual institutional affiliations.

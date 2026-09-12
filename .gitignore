@@ -1,0 +1,23 @@
+node_modules/
+.env
+.env.local
+*.log
+dist/
+.DS_Store
+.turbo/
+*.tsbuildinfo
+.next/
+next-env.d.ts
+assets/fonts/
+apps/mobile/.expo/
+
+# Web approval and attempt metadata (not task storage)
+.data/
+
+# Local secrets and editor connection configuration
+.env.*
+!.env.example
+!.env.starts-forward.example
+*.pem
+*.key
+.mcp.json
