@@ -12,6 +12,10 @@ test("protected routes fail closed with incomplete configuration and reject unau
     assert.equal((await middleware(new NextRequest("http://127.0.0.1:3100/api/followups"))).status, 503);
     assert.equal((await middleware(new NextRequest("http://127.0.0.1:3100/"))).status, 307);
     Object.assign(process.env, { AUTH0_DOMAIN: "test.auth0.com", AUTH0_CLIENT_ID: "test", AUTH0_CLIENT_SECRET: "test", AUTH0_SECRET: "ab".repeat(32), APP_BASE_URL: "http://127.0.0.1:3100" });
+    const invalidCallback = await middleware(new NextRequest("http://127.0.0.1:3100/auth/callback?state=expired&code=invalid"));
+    assert.equal(invalidCallback.status, 307);
+    assert.equal(invalidCallback.headers.get("location"), "http://127.0.0.1:3100/login?notice=retry");
+    assert.ok(!invalidCallback.headers.get("set-cookie")?.includes("__session="));
     assert.equal((await middleware(new NextRequest("http://127.0.0.1:3100/api/copilotkit"))).status, 401);
     assert.equal((await middleware(new NextRequest("http://127.0.0.1:3100/api/followups"))).status, 401);
     assert.equal((await middleware(new NextRequest("http://127.0.0.1:3100/"))).status, 307);
