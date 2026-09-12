@@ -28,3 +28,7 @@ Partial Auth0 configuration blocks protected routes instead of falling back to g
 - https://auth0.com/docs/quickstart/webapp/nextjs
 - https://github.com/auth0/nextjs-auth0 (SDK v4; middleware.ts for Next.js 15)
 - https://developers.openai.com/api/reference/overview (server-side API authentication)
+
+## Exa public research
+
+Add `EXA_API_KEY` to root `.env` locally and restart. In Evidence studio, enter a public research question, choose Public web or UN/UNESCO/WHO, and select Search with Exa. Open source links, review publication dates, then select Review for evidence. Supply a date, reviewed summary and limitations before saving. Search does not require OpenAI credit; interpreting results in live chat still does. The `search_public_sources` frontend tool gives STARTS Bridge the same source search. Queries go to Exa; secrets stay server-side. Results are untrusted excerpts, not verified findings, affiliations or job openings. Live Exa calls require your key and have not been verified without it.

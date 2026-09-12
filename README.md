@@ -42,6 +42,10 @@ MODEL=your-tool-capable-model-id
 
 Choose a model your API account can access. API usage requires available credit. Restart the server and open STARTS Bridge on Overview. Keys stay on the server; never commit `.env`. The last live request during development was blocked by exhausted API credit, so successful live conversation has not yet been verified. The guided demo does not make model calls.
 
+## Exa research (optional)
+
+Add `EXA_API_KEY` to root `.env` and restart. Evidence Studio can search public sources without OpenAI credit. Review source links, dates, summaries and limitations before saving evidence. STARTS Bridge can use the same search through its `search_public_sources` tool. Exa results are untrusted excerpts, not verified findings. Live Exa requests remain unverified until a key is supplied.
+
 ## Enable Auth0 user login (optional)
 
 Create your own Auth0 **Regular Web Application**. Set its allowed callback to `http://127.0.0.1:3100/auth/callback`, and its allowed logout URL and web origin to `http://127.0.0.1:3100`. Add your domain, client ID and client secret to root `.env`; set `AUTH0_ENABLED=true` and generate `AUTH0_SECRET` with `openssl rand -hex 32`. Keep `APP_BASE_URL=http://127.0.0.1:3100`.
