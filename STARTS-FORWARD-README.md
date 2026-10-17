@@ -50,6 +50,16 @@ The STARTS Bridge prompt lives in `apps/web/src/lib/bridge-instructions.ts` and 
 
 The knowledge library contains curated summaries and official source links, not a complete ingested corpus, semantic search, or current web retrieval. Domain guardrails are instructions, not a claim of comprehensive policy enforcement. Live model grounding and adversarial behavior require evaluation once credentials are configured.
 
+## Coaching review
+
+The **Coaching review** page summarizes the synthetic STARTS coaching program data: coach MI skill versus participant outcomes, a safety-disclosure review queue, engagement and equity outcomes, and supervisor rater calibration. All data is synthetic, and safety items are keyword matches that need human confirmation. Review marks are kept in browser `localStorage` only.
+
+The page reads precomputed aggregates from `apps/web/src/lib/coaching-review-data.json`. To regenerate it from the CSVs (requires Python 3 and pandas):
+
+```sh
+python3 apps/web/scripts/build-coaching-review.py <directory-with-csvs>
+```
+
 ## Storage
 
 Without `AMBIGUOUS_API_KEY`, approved projects are JSON records under `apps/web/.data/bridge-demo-records/`. Approval metadata is stored separately under `apps/web/.data/bridge-demo-approvals/`. Both survive restarts on the same disk. They are ignored by Git. Drafts require a browser session and expire after ten minutes; unsaved drafts are not restored after reload.
