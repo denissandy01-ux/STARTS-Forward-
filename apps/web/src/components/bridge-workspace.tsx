@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { findPriority, priorities, partners, sources, phases, sdgNames, projectDraft } from "@/lib/bridge";
 import { useWorkplace } from "@/lib/use-workplace";
 import { BridgeAgent } from "./bridge-agent";
+import { CoachingReview } from "./coaching-review";
 import { VisionSection, HubSection, CapabilityPanel, GlobalNetwork, EvidenceStudio, InfluenceLadder, PaidProjects, ImpactTracker } from "./ecosystem-panels";
 import { analyzeCapability, getTeam, type CapabilityId, type CapabilityResult } from "@/lib/ecosystem";
 import { useLearningWorkspace } from "@/lib/use-learning-workspace";
@@ -24,7 +25,7 @@ function Icon({ name, size = 20 }: { name: string; size?: number }) {
 }
 function NetworkArt() { return <div className="network-art" aria-hidden="true"><div className="orbit orbit-one"/><div className="orbit orbit-two"/><div className="orbit orbit-three"/><svg viewBox="0 0 330 260"><path d="M165 133 74 52M165 133 281 84M165 133 248 222M165 133 54 202M74 52 281 84M54 202 248 222"/></svg><div className="network-center"><Icon name="spark" size={32}/></div>{["people", "book", "case", "globe"].map((n,i) => <div key={n} className={`network-node n${i+1}`}><Icon name={n}/></div>)}{["COMMUNITY", "KNOWLEDGE", "OPPORTUNITY", "SHARED IMPACT"].map((n,i) => <span key={n} className={`network-label l${i+1}`}>{n}</span>)}</div>; }
 
-const navigationItems = [["Overview", "grid"], ["Global network", "globe"], ["Evidence studio", "book"], ["Intelligence", "spark"], ["Influence ladder", "arrow"], ["Paid projects", "case"], ["Impact tracker", "check"], ["Shared projects", "case"], ["Partner network", "people"], ["Career pathways", "globe"], ["Knowledge library", "book"]];
+const navigationItems = [["Overview", "grid"], ["Global network", "globe"], ["Evidence studio", "book"], ["Intelligence", "spark"], ["Influence ladder", "arrow"], ["Paid projects", "case"], ["Impact tracker", "check"], ["Coaching review", "shield"], ["Shared projects", "case"], ["Partner network", "people"], ["Career pathways", "globe"], ["Knowledge library", "book"]];
 
 export function BridgeWorkspace({ live, storage, account }: { live: boolean; storage: string; account?: { name: string; key: string } }) {
   const [selectedId, setSelectedId] = useState<string>(priorities[0].id);
@@ -97,11 +98,12 @@ export function BridgeWorkspace({ live, storage, account }: { live: boolean; sto
         <div className="metrics"><div><span className="metric-icon mint"><Icon name="globe"/></span><div><strong>{String(priorities.length).padStart(2,"0")} <span>Health priorities</span></strong><small>Illustrative starting points</small></div></div><div><span className="metric-icon blue"><Icon name="people"/></span><div><strong>{String(partners.length).padStart(2,"0")} <span>Partner perspectives</span></strong><small>One collaborative approach</small></div></div><div><span className="metric-icon peach"><Icon name="case"/></span><div><strong>03 <span>Paid role concepts</span></strong><small>Per project · funding to confirm</small></div></div></div>
       </>}
       {view === "Overview" && <VisionSection navigate={setView}/>}
-      {!["Overview", "Shared projects"].includes(view) && <div className="scope-bar"><label htmlFor="global-priority">Your active health problem</label><select id="global-priority" value={selectedId} onChange={e => select(e.target.value)}>{priorities.map(p => <option key={p.id} value={p.id}>{p.short}</option>)}</select><span>Evidence, connections and impact follow this priority.</span></div>}
+      {!["Overview", "Shared projects", "Coaching review"].includes(view) && <div className="scope-bar"><label htmlFor="global-priority">Your active health problem</label><select id="global-priority" value={selectedId} onChange={e => select(e.target.value)}>{priorities.map(p => <option key={p.id} value={p.id}>{p.short}</option>)}</select><span>Evidence, connections and impact follow this priority.</span></div>}
       {view === "Global network" && <><GlobalNetwork teamId={teamId} setTeamId={setTeamId} onDraft={text => {void featureDraft(text,"collaboration");}}/><HubSection/></>}
       {view === "Evidence studio" && <EvidenceStudio key={priority.id} learning={learning} priority={priority}/>}
       {view === "Influence ladder" && <InfluenceLadder learning={learning} onDraft={text => {void featureDraft(text,"influence");}}/>}
       {view === "Paid projects" && <PaidProjects onDraft={text => {void featureDraft(text,"paid");}}/>}
+      {view === "Coaching review" && <CoachingReview/>}
       {view === "Impact tracker" && <ImpactTracker key={priority.id} learning={learning} priority={priority}/>}
       {(view === "Intelligence" || view === "Overview" || !!analysis) && <CapabilityPanel run={runCapability} result={analysis}/>}
       {(view === "Overview" || view === "Shared projects") && <div className="workspace-grid"><section className="priority-panel">
